@@ -20,10 +20,14 @@ body {
   margin-top: 40px;
 }
 
-#aboutme img {
-  width: 200px;
+.about-img img {
+  width: 240px;
   height: auto;
   border-radius: 8px;
+}
+
+.about-text {
+  max-width: 600px;
 }
 
 #aboutme p {
