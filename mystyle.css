@@ -10,7 +10,7 @@ body {
 .center {
   margin: auto;
   max-width: 900px;
-  padding: 40px 20px;
+  padding: 20px 20px;
 }
 
 #aboutme {
@@ -24,6 +24,9 @@ body {
   width: 240px;
   height: auto;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .about-text {
@@ -60,7 +63,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap; 
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .header-bar h1 {
@@ -76,6 +79,11 @@ nav a {
 }
 
 video {
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+img.cuwall {
   margin-top: 10px;
   border-radius: 8px;
 }
