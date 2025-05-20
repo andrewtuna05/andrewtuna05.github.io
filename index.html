@@ -1,4 +1,4 @@
-ls<html lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,25 +6,49 @@ ls<html lang="en">
     <link rel="stylesheet" href="mystyle.css">
 </head>
 <body>
-    <nav>
-        <a href="./index.html">Andrew Yuan</a>
-        <!--<a href="./academicinterests.html">Academic Interests</a>-->
-        <!--<a href="./hobbies.html">Hobbies</a>-->
-    </nav>
+    <div class = "center">
+        <nav>
+            <a href="./index.html">Andrew Yuan</a>
+            <!--<a href="./academicinterests.html">Academic Interests</a>-->
+            <!--<a href="./hobbies.html">Hobbies</a>-->
+        </nav>
 
-    <h1> Andrew Yuan's Homepage </h1>
-    <hr>
-    <div id="homepage" class="center">
-        <h1> About Me</h1>
-        <p> Hi, I'm Andrew and I'm a Senior Electrical Engineering Student at The Cooper Union in New York City. 
-            I'm also pursuing a double minor in Mathematics and Computer Science. <br><br> 
+        <h1> Andrew Yuan's Homepage </h1>
+        <hr>
+        <div id="aboutme">
+            <h2> About Me</h2>
+            <p> Hi, I'm Andrew and I'm a Junior Electrical Engineering major at The Cooper Union in New York City. 
+                I'm also pursuing a double minor in Mathematics and Computer Science.  <br>
+                I’m passionate about optimization and stochastic processes— especially applying mathematical tools to tackle real-world challenges. After graduating from Cooper Union, I plan to pursue graduate studies in Applied Mathematics.
+                This Summer, I will be at Cal Poly Pomona working with Dr. Jimmy Risk in Kernel Engineering with GPs and SVMs. <br><br>
+                
+                <img src ="images/soma.png" height="180" width="240">
+                (One of my favorite characters in show is Yukihira Soma from Food Wars!)
 
-            I’m passionate about optimization, stochastic processes, and machine learning— especially applying mathematical tools to tackle real-world challenges. 
-            This Summer, I will be at Cal Poly Pomona working with Dr. Jimmy Risk in Kernel Engineering with GPs and SVMs. 
-            Outside of academia, I am a semi-professional badminton player. I've competed at the 2022 World Junior Championships and am a former US and Pan Am junior champion.
-            In July, I'll be competing in Germany at the 2025 FISU World University Games. Go Team USA!
-            <br>
-        </p>
+                Outside of academia, I am a semi-professional badminton player. I'm a former member of the US Junior National Team and previously competed at the 2022 World Junior Championships. 
+                In July, I'll be competing in Germany at the 2025 FISU World University Games.
+                <br>
+            </p>
+
+        </div>
+
+        <div id="projects"> 
+            <h2>Some of my past engineering projects: </h2>
+            <ul>
+                <li><a href="https://github.com/andrewtuna05/CooperWall/" target="_blank">CooperWall</a>: an interactive quote forum to capture the essence of Cooper </li>
+                <li> ScopeTV: Displays analog video on standard labratory oscilloscope- turning into a vintage display 
+                <video width="320" height="240" controls>
+                    <source src="videos/scopetv.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <!--<li> Color Organ w/ Audio Amplifier </li>
+                <video width="320" height="240" controls>s
+                <source src="videos/s3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video>
+                <!-<li> Playable Theremin </li>-->
+            </ul>
+        </div>
     </div>
 </body>
 </html>

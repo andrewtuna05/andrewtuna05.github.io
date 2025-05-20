@@ -1,14 +1,52 @@
 body {
   background-color: rgb(236, 236, 236);/*silver*/
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #000;
 }
 
-div {
-  width: 300px;
-  padding: 50px;
-  margin: 20px;
-}
 .center {
-  margin: 800px;
-  width: 50%;
-  padding: 50px;
+  margin: auto;
+  max-width: 900px;
+  padding: 40px 20px;
+}
+
+#aboutme {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+#aboutme img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
+
+#aboutme p {
+  max-width: 600px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+#projects {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+#projects video {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
+
+#projects p {
+  max-width: 600px;
 }
