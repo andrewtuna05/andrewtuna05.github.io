@@ -79,3 +79,11 @@ video {
   margin-top: 10px;
   border-radius: 8px;
 }
+
+#projects li {
+  margin-bottom: 30px;
+}
+
+.video-block {
+  margin-top: 10px;
+}
