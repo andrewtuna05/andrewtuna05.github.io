@@ -10,7 +10,7 @@ body {
 .center {
   margin: auto;
   max-width: 900px;
-  padding: 20px 20px;
+  padding: 10px 10px;
 }
 
 #aboutme {
@@ -20,13 +20,17 @@ body {
   margin-top: 40px;
 }
 
+.about-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .about-img img {
   width: 240px;
   height: auto;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  margin: 0;
 }
 
 .about-text {
