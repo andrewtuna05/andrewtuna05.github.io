@@ -37,6 +37,10 @@ body {
   max-width: 600px;
 }
 
+.about-text h2{
+  margin-top: 0;
+}
+
 #aboutme p {
   max-width: 600px;
 }
