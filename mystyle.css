@@ -74,7 +74,11 @@ ul {
 
 .header-bar h2 {
   margin: 0;
-  font-size: 1em;
+  font-size: 1.3em;
+}
+
+hr {
+  margin-top: 0;
 }
 
 #link-bar {
