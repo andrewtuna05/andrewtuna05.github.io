@@ -70,12 +70,43 @@ ul {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap; 
-  padding: 10px 0;
 }
 
 .header-bar h1 {
   margin: 0;
   font-size: 1.8em;
+}
+
+#link-bar {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#link-bar div {
+  display: flex;
+  gap: 40px; /* spacing between logos */
+}
+
+#link-bar img {
+  height: 80px;
+  width: auto;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+#link-bar img {
+  height: 48px;    
+  width: 48px;
+  object-fit: contain;
+  margin: 0 10px;  
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+#link-bar img:hover {
+  transform: scale(1.1);
 }
 
 nav a {
