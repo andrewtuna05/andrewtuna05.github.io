@@ -30,6 +30,9 @@ body {
   height: auto;
   border-radius: 8px;
   margin: 0;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
 .about-text {
@@ -69,7 +72,16 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
+  margin-bottom: 0; 
+}
+
+.header-bar a {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  text-decoration: underline;
+  color: rgb(20, 5, 226);
 }
 
 .header-bar h2 {
@@ -101,10 +113,10 @@ hr {
 }
 
 #link-bar img {
-  height: 42px;    
-  width: 42px;
+  height: 36px;    
+  width: 36px;
   object-fit: contain;
-  margin: 0 10px;  
+  margin: 0 5px;  
   transition: transform 0.3s ease;
   cursor: pointer;
 }
