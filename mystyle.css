@@ -149,6 +149,10 @@ img.cuwall {
   display: block;
 }
 
+#projects a {
+  color: rgb(20, 5, 226);
+  text-decoration: underline;
+}
 
 #projects li {
   margin-bottom: 30px;
