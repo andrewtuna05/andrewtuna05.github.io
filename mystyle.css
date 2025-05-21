@@ -97,10 +97,10 @@ ul {
 }
 
 #link-bar img {
-  height: 48px;    
-  width: 48px;
+  height: 30px;    
+  width: 30px;
   object-fit: contain;
-  margin: 0 10px;  
+  margin: 0 5px;  
   transition: transform 0.2s ease;
   cursor: pointer;
 }
