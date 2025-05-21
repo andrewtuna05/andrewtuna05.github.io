@@ -113,6 +113,10 @@ hr {
   transform: scale(1.1);
 }
 
+#aboutme img:hover {
+  transform: scale(1.2);
+}
+
 nav a {
   margin-left: 20px;
   text-decoration: none;
