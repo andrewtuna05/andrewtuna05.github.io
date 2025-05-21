@@ -97,8 +97,8 @@ ul {
 }
 
 #link-bar img {
-  height: 35px;    
-  width: 35px;
+  height: 42px;    
+  width: 42px;
   object-fit: contain;
   margin: 0 10px;  
   transition: transform 0.3s ease;
