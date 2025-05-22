@@ -105,13 +105,6 @@ hr {
 }
 
 #link-bar img {
-  height: 80px;
-  width: auto;
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
-
-#link-bar img {
   height: 36px;    
   width: 36px;
   object-fit: contain;
