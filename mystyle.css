@@ -35,8 +35,8 @@ body {
 }
 
 .holographic-card {
-  width: 240px;
-  height: 180px;
+  width: 360px;
+  height: 240px;
   position: relative;
   overflow: hidden;
   border-radius: 15px;
