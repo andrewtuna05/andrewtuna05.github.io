@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Factor Game</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: sans-serif;
+      background: #fafafa;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #game-container {
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding-top: 40px;
+    }
+
+    /* Overlay prompt */
+    #overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    #prompt-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 6px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    .instructions {
+      text-align: left;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    #prompt-box input {
+      width: 4rem;
+      font-size: 1rem;
+      margin-left: 0.5rem;
+    }
+    #prompt-box button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* Restart button */
+    #restartBtn {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      display: none;
+      cursor: pointer;
+    }
+
+    /* Number grid */
+    #number-grid {
+      flex: 1;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: flex-start;
+      overflow-y: auto;
+    }
+    .number-cell {
+      width: 2.5em;
+      height: 2.5em;
+      line-height: 2.5em;
+      margin: 0.3em;
+      background: #e0e0e0;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to   { opacity: 0; transform: scale(1.2); }
+    }
+    .number-cell.fading {
+      animation: fadeOut 0.3s forwards;
+    }
+    .number-cell.removed { visibility: hidden; }
+
+    /* Scoreboard */
+    #scoreboard {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      border-top: 1px solid #ddd;
+    }
+    .player {
+      width: 45%;
+    }
+    .player h2 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .player p {
+      font-size: 1.1rem;
+    }
+
+    /* Result */
+    #result {
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 1.1rem;
+      border-top: 1px solid #ddd;
+      min-height: 1.5em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay to prompt for N and show instructions -->
+  <div id="overlay">
+    <div id="prompt-box">
+      <div class="instructions">
+        <strong>Factor Game - How to play:</strong><br/>
+        2 Players take turns selecting any available number.<br/>
+        When you pick <em>X</em>, you earn <em>X</em> points<br/>
+        but your opponent earns any still-available factors of <em>X</em>.<br/>
+        Players alternate turns until all the numbers are gone.<br/>
+        The player with the highest score wins.
+      </div>
+      <label>
+        Pick a number N (1–100):
+        <input id="inputN" type="number" min="1" max="100" />
+      </label>
+      <br/>
+      <button id="startBtn" type="button">Start Game</button>
+    </div>
+  </div>
+
+  <!-- Main game container -->
+  <div id="game-container">
+    <button id="restartBtn" type="button">Restart</button>
+    <div id="number-grid"></div>
+    <div id="scoreboard">
+      <div class="player">
+        <h2>Player 1</h2>
+        <p>Score: <span id="score1">0</span></p>
+      </div>
+      <div class="player">
+        <h2>Player 2</h2>
+        <p>Score: <span id="score2">0</span></p>
+      </div>
+    </div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const overlay    = document.getElementById('overlay');
+      const startBtn   = document.getElementById('startBtn');
+      const inputN     = document.getElementById('inputN');
+      const restartBtn = document.getElementById('restartBtn');
+      const grid       = document.getElementById('number-grid');
+      const score1Span = document.getElementById('score1');
+      const score2Span = document.getElementById('score2');
+      const resultDiv  = document.getElementById('result');
+
+      let N, avail, scores, currentPlayer, gameActive;
+
+      startBtn.addEventListener('click', () => {
+        const val = parseInt(inputN.value, 10);
+        if (!val || val < 1 || val > 100) {
+          return alert('Please enter an integer from 1 to 100.');
+        }
+        N = val;
+        overlay.style.display = 'none';
+        initGame();
+      });
+
+      restartBtn.addEventListener('click', () => location.reload());
+
+      function initGame() {
+        avail = Array(N + 1).fill(true);
+        avail[0] = false;
+        scores = [0, 0];
+        currentPlayer = 1;
+        gameActive = true;
+        restartBtn.style.display = 'block';
+        buildGrid();
+        updateScores();
+      }
+
+      function buildGrid() {
+        grid.innerHTML = '';
+        for (let i = 1; i <= N; i++) {
+          const cell = document.createElement('div');
+          cell.className = 'number-cell';
+          cell.textContent = i;
+          cell.dataset.val = i;
+          cell.addEventListener('click', onCellClick);
+          grid.appendChild(cell);
+        }
+      }
+
+      function onCellClick() {
+        if (!gameActive) return;
+        const x = +this.dataset.val;
+        if (!avail[x]) return;
+        playTurn(x);
+      }
+
+      function playTurn(x) {
+        removeCell(x, currentPlayer);
+        for (let v = 1; v <= N; v++) {
+          if (avail[v] && x % v === 0) {
+            removeCell(v, 3 - currentPlayer);
+          }
+        }
+        updateScores();
+        if (avail.slice(1).every(v => !v)) {
+          gameActive = false;
+          announceWinner();
+        } else {
+          currentPlayer = 3 - currentPlayer;
+        }
+      }
+
+      function removeCell(val, player) {
+        avail[val] = false;
+        scores[player - 1] += val;
+        const cell = grid.querySelector(`[data-val="${val}"]`);
+        cell.classList.add('fading');
+        cell.removeEventListener('click', onCellClick);
+        setTimeout(() => cell.classList.add('removed'), 300);
+      }
+
+      function updateScores() {
+        score1Span.textContent = scores[0];
+        score2Span.textContent = scores[1];
+      }
+
+      function announceWinner() {
+        if (scores[0] > scores[1])      resultDiv.textContent = 'Player 1 Wins!';
+        else if (scores[1] > scores[0]) resultDiv.textContent = 'Player 2 Wins!';
+        else                            resultDiv.textContent = "It's a Tie!";
+      }
+    });
+  </script>
+
+</body>
+</html>
