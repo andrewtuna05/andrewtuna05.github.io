@@ -27,7 +27,6 @@
       padding-top: 40px;
     }
 
-    /* Overlay prompt */
     #overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -63,7 +62,6 @@
       cursor: pointer;
     }
 
-    /* Restart button */
     #restartBtn {
       position: absolute;
       top: 8px;
@@ -75,7 +73,6 @@
       cursor: pointer;
     }
 
-    /* Number grid */
     #number-grid {
       flex: 1;
       padding: 1rem;
@@ -106,7 +103,6 @@
     }
     .number-cell.removed { visibility: hidden; }
 
-    /* Scoreboard */
     #scoreboard {
       display: flex;
       justify-content: space-between;
@@ -124,7 +120,6 @@
       font-size: 1.1rem;
     }
 
-    /* Result */
     #result {
       text-align: center;
       padding: 0.5rem 1rem;
@@ -136,7 +131,6 @@
 </head>
 <body>
 
-  <!-- Overlay to prompt for N and show instructions -->
   <div id="overlay">
     <div id="prompt-box">
       <div class="instructions">
@@ -156,7 +150,6 @@
     </div>
   </div>
 
-  <!-- Main game container -->
   <div id="game-container">
     <button id="restartBtn" type="button">Restart</button>
     <div id="number-grid"></div>
@@ -268,7 +261,7 @@
     });
     document.getElementById('startBtn').addEventListener('click', () => {
     const music = document.getElementById('bg-music');
-    music.volume = 0.3;      // set volume (0.0–1.0)
+    music.volume = 0.1;      // set volume (0.0–1.0)
     music.play().catch(() => {
       // fallback if autoplay is blocked
       console.log('Background music blocked—will play on next interaction.');
