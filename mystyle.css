@@ -5,6 +5,8 @@ body {
   padding: 0;
   line-height: 1.6;
   color: #000;
+  /* 👇 this line forces scrollbar space always */
+  overflow-y: scroll;
 }
 
 .center {
@@ -86,7 +88,7 @@ body {
   max-width: 600px;
 }
 
-.about-text h2{
+.about-text h2 {
   margin-top: 0;
 }
 
