@@ -37,7 +37,7 @@
 .wage-theft-page .wt-subtitle {
   margin: 12px auto 0;
   color: #6b7280;   
-  font-size: 1.1rem;
+  font-size: 1.24rem;
   max-width: 700px; 
   line-height: 1.6;
 }
@@ -58,12 +58,12 @@
 
 .wage-theft-page .wt-section-heading h2 {
   margin: 0 0 8px;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 800;
 }
 
 .wage-theft-page .wt-section-heading p {
-  margin: 0 0 28x;
+  margin: 0 0 28px;
   font-size: 1.8rem;
   color: #6b7280;
 }
@@ -80,6 +80,7 @@
 
 .wage-theft-page .wt-card-subtitle {
   margin: 0;
+  font-size: 1.1rem;
   color: #6b7280;
 }
 
