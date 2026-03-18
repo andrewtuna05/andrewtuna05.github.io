@@ -125,9 +125,11 @@
   font-size: 0.95rem;
 }
 
-.wage-theft-page .wt-chart-wrap {
+.wt-chart-wrap {
   width: 100%;
-  overflow-x: auto;
+  height: 350px; /* Force a nice height for the bars */
+  margin-top: 20px;
+  overflow-x: auto
 }
 
 .wage-theft-page .wt-error-box {

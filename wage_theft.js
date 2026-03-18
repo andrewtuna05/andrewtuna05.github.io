@@ -17,8 +17,11 @@ Papa.parse("./data/processed_wage_theft_data.csv", {
     uniqueIndustries = extractUniqueIndustries(allRows);
     uniqueCounties = extractUniqueCounties(allRows);
 
-    buildIndustryCheckboxes(uniqueIndustries);
-    buildIndustryChart(getCheckedIndustries());
+    // FIX: Just take the top 8 directly from your sorted uniqueIndustries
+    const top8Industries = uniqueIndustries.slice(0, 8);
+    
+    // Pass those top 8 straight to the chart
+    buildIndustryChart(top8Industries);
     buildCountyChart(uniqueCounties);
 
     const companyId = getCompanyIdFromUrl();
@@ -31,11 +34,7 @@ Papa.parse("./data/processed_wage_theft_data.csv", {
 
     renderCaseCard(selectedRow);
     renderIndustryCard(selectedRow);
-  },
-  error: function (err) {
-    console.error("CSV load error:", err);
-    renderLoadError();
-  }
+  }   
 });
 
 function getCompanyIdFromUrl() {
@@ -260,30 +259,28 @@ function buildIndustryChart(data) {
       datasets: [
         {
           label: "Total Wages Stolen",
-          data: data.map((d) => d.industryStolen)
+          data: data.map((d) => d.industryStolen),
+          backgroundColor: "#3b82f6", // A solid professional blue
+          borderRadius: 6
         }
       ]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false, // Allows the chart to fill the container better
       plugins: {
-        legend: {
-          display: false
-        },
+        legend: { display: false },
         tooltip: {
           callbacks: {
-            label: function (context) {
-              return ` ${formatCurrency(context.raw)}`;
-            }
+            label: (context) => ` ${formatCurrency(context.raw)}`
           }
         }
       },
       scales: {
         y: {
+          beginAtZero: true,
           ticks: {
-            callback: function (value) {
-              return shortCurrency(value);
-            }
+            callback: (value) => shortCurrency(value)
           }
         }
       }
