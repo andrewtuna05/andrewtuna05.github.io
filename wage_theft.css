@@ -19,7 +19,7 @@
 }
 
 .wage-theft-page .wt-logo {
-  max-width: 140px;
+  max-width: 280px;
   width: 100%;
   height: auto;
   display: block;
@@ -27,15 +27,19 @@
 }
 
 .wage-theft-page .wt-title {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
+  margin: 0;    
+  font-size: 2.3rem;    
+  font-weight: 800;  
+  color: #111827;    
+  letter-spacing: -0.025em; 
 }
 
 .wage-theft-page .wt-subtitle {
-  margin: 10px 0 0;
-  color: #6b7280;
-  font-size: 1rem;
+  margin: 12px auto 0;
+  color: #6b7280;   
+  font-size: 1.1rem;
+  max-width: 700px; 
+  line-height: 1.6;
 }
 
 .wage-theft-page .wt-container {
@@ -79,7 +83,7 @@
 
 .wage-theft-page .wt-stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   gap: 14px;
   margin-top: 10px;
 }

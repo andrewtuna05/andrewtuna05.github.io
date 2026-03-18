@@ -19,7 +19,8 @@ Papa.parse("./data/processed_wage_theft_data.csv", {
     
     const top8Industries = uniqueIndustries.slice(0, 8);
     buildIndustryChart(top8Industries);
-    buildCountyChart(uniqueCounties);
+    const top8Counties = uniqueCounties.slice(0, 8);
+    buildCountyChart(top8Counties);
 
     const companyId = getCompanyIdFromUrl();
     const selectedRow = allRows.find((row) => row.companyId === companyId);
@@ -91,15 +92,6 @@ function renderCaseCard(row) {
         <div class="wt-stat-value">${formatCurrency(row.companyAvgLossPerWorker)}</div>
       </div>
     </div>
-
-    <p class="wt-narrative">
-      This featured page is tied to a worker-specific barcode associated with
-      <strong>${escapeHtml(row.company)}</strong>. In this company-level case,
-      the dataset records <strong>${formatCurrency(row.companyTotalWages)}</strong>
-      in stolen wages across <strong>${formatNumber(row.companyTotalClaimants)}</strong>
-      claimants, for an average loss of
-      <strong>${formatCurrency(row.companyAvgLossPerWorker)}</strong> per worker.
-    </p>
   `;
 }
 
@@ -128,15 +120,6 @@ function renderIndustryCard(row) {
         <div class="wt-stat-value">${formatCurrency(row.industryAvgLossPerWorker)}</div>
       </div>
     </div>
-
-    <p class="wt-narrative">
-      Looking beyond the single company, the broader
-      <strong>${escapeHtml(row.industry)}</strong> industry accounts for
-      <strong>${formatCurrency(row.industryStolen)}</strong> in stolen wages
-      affecting <strong>${formatNumber(row.industryTotalClaimants)}</strong>
-      claimants, with an average loss of
-      <strong>${formatCurrency(row.industryAvgLossPerWorker)}</strong> per worker.
-    </p>
   `;
 }
 
