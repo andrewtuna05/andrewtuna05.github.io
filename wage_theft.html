@@ -21,57 +21,39 @@
     </header>
 
     <main class="wt-container">
-      <section class="wt-section">
+    <section class="wt-section">
         <div class="wt-section-heading">
-          <h2>A Single Wage Theft Case</h2>
-          <p>
-            This page was opened from a worker-specific barcode linked to a featured company case.
-          </p>
+        <h2>A Single Wage Theft Case</h2>
         </div>
-
         <div id="caseCard" class="wt-info-card"></div>
-      </section>
+    </section>
 
     <section class="wt-section">
         <div class="wt-section-heading">
-            <h2>Comparing Wage Theft Across Industries</h2>
-            <p>
-            Total wages stolen across the top 8 industry offenders in the dataset.
-            </p>
+        <h2>Industry Context</h2>
         </div>
+        <div id="industryCard" class="wt-info-card"></div>
+    </section>
 
+    <section class="wt-section">
+        <div class="wt-section-heading">
+        <h2>Comparing Wage Theft Across Industries</h2>
+        <p>Select industries to compare total wages stolen.</p>
+        </div>
+        <div id="industryCheckboxes" class="wt-checkbox-group"></div>
         <div class="wt-chart-wrap">
-            <canvas id="industryChart"></canvas>
+        <canvas id="industryChart"></canvas>
         </div>
     </section>
 
-      <section class="wt-section">
+    <section class="wt-section">
         <div class="wt-section-heading">
-          <h2>Comparing Wage Theft Across Industries</h2>
-          <p>
-            Total wages stolen across selected industries.
-          </p>
+        <h2>Where Wage Theft Is Happening</h2>
         </div>
-
-        <div id="industryCheckboxes" class="wt-checkbox-group"></div>
-
         <div class="wt-chart-wrap">
-          <canvas id="industryChart"></canvas>
+        <canvas id="countyChart"></canvas>
         </div>
-      </section>
-
-      <section class="wt-section">
-        <div class="wt-section-heading">
-          <h2>Where Wage Theft Is Happening</h2>
-          <p>
-            Total wages stolen by county.
-          </p>
-        </div>
-
-        <div class="wt-chart-wrap">
-          <canvas id="countyChart"></canvas>
-        </div>
-      </section>
+    </section>
     </main>
   </div>
 
