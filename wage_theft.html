@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wage Theft Project</title>
 
-  <link rel="stylesheet" href="./wage-theft.css" />
+  <link rel="stylesheet" href="./wage_theft.css" />
 
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -31,20 +31,21 @@
     <section class="wt-section">
         <div class="wt-section-heading">
         <h2>Industry Context</h2>
+        <p>How this company's industry compares to others in New York.</p>
         </div>
         <div id="industryCard" class="wt-info-card"></div>
     </section>
 
     <section class="wt-section">
         <div class="wt-section-heading">
-        <h2>Comparing Wage Theft Across Industries</h2>
-        <p>Select industries to compare total wages stolen.</p>
+            <h2>Top 8 Industry Offenders</h2>
+            <p>Total wages stolen across the highest-impact industries in New York.</p>
         </div>
-        <div id="industryCheckboxes" class="wt-checkbox-group"></div>
+
         <div class="wt-chart-wrap">
-        <canvas id="industryChart"></canvas>
+            <canvas id="industryChart"></canvas>
         </div>
-    </section>
+        </section>
 
     <section class="wt-section">
         <div class="wt-section-heading">
@@ -57,6 +58,6 @@
     </main>
   </div>
 
-  <script src="./wage-theft.js"></script>
+  <script src="./wage_theft.js"></script>
 </body>
 </html>

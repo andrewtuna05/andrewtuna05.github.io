@@ -16,11 +16,7 @@ Papa.parse("./data/processed_wage_theft_data.csv", {
 
     uniqueIndustries = extractUniqueIndustries(allRows);
     uniqueCounties = extractUniqueCounties(allRows);
-
-    // 1. Build the checkboxes first
-    buildIndustryCheckboxes(uniqueIndustries);
     
-    // 2. Initial chart (top 8)
     const top8Industries = uniqueIndustries.slice(0, 8);
     buildIndustryChart(top8Industries);
     buildCountyChart(uniqueCounties);
