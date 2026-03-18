@@ -1,0 +1,166 @@
+.wage-theft-page,
+.wage-theft-page * {
+  box-sizing: border-box;
+}
+
+.wage-theft-page {
+  min-height: 100vh;
+  background: #f6f7fb;
+  color: #1f2937;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+.wage-theft-page .wt-header {
+  text-align: center;
+  padding: 32px 20px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wage-theft-page .wt-logo {
+  max-width: 140px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 14px;
+}
+
+.wage-theft-page .wt-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.wage-theft-page .wt-subtitle {
+  margin: 10px 0 0;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.wage-theft-page .wt-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+}
+
+.wage-theft-page .wt-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.wage-theft-page .wt-section-heading h2 {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+}
+
+.wage-theft-page .wt-section-heading p {
+  margin: 0 0 18px;
+  color: #6b7280;
+}
+
+.wage-theft-page .wt-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.wage-theft-page .wt-label {
+  font-weight: 600;
+}
+
+.wage-theft-page .wt-select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  min-width: 260px;
+  font-size: 0.95rem;
+}
+
+.wage-theft-page .wt-info-card {
+  display: grid;
+  gap: 14px;
+}
+
+.wage-theft-page .wt-card-title {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.wage-theft-page .wt-card-subtitle {
+  margin: 0;
+  color: #6b7280;
+}
+
+.wage-theft-page .wt-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.wage-theft-page .wt-stat-box {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.wage-theft-page .wt-stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.wage-theft-page .wt-stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.wage-theft-page .wt-narrative {
+  margin-top: 8px;
+  color: #374151;
+}
+
+.wage-theft-page .wt-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.wage-theft-page .wt-checkbox-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: #f3f4f6;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+.wage-theft-page .wt-chart-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.wage-theft-page canvas {
+  max-width: 100%;
+}
+
+@media (max-width: 800px) {
+  .wage-theft-page .wt-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wage-theft-page .wt-title {
+    font-size: 1.7rem;
+  }
+}
