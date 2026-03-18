@@ -17,8 +17,10 @@ Papa.parse("./data/processed_wage_theft_data.csv", {
     uniqueIndustries = extractUniqueIndustries(allRows);
     uniqueCounties = extractUniqueCounties(allRows);
     
-    const top8Industries = uniqueIndustries.slice(0, 8);
+    // Filter out "Other" before slicing the top 8
+    const top8Industries = uniqueIndustries.filter(item => item.industry.toLowerCase() !== 'other').slice(0, 8);
     buildIndustryChart(top8Industries);
+    
     const top8Counties = uniqueCounties.slice(0, 8);
     buildCountyChart(top8Counties);
 
@@ -289,6 +291,7 @@ function buildCountyChart(counties) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           display: false
