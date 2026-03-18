@@ -58,7 +58,7 @@
 
 .wage-theft-page .wt-section-heading h2 {
   margin: 0 0 8px;
-  font-size: 1.5rem;
+  font-size: 2 rem;
 }
 
 .wage-theft-page .wt-section-heading p {
@@ -131,7 +131,7 @@
 
 .wt-chart-wrap {
   width: 100%;
-  height: 350px; /* Force a nice height for the bars */
+  height: 500px; 
   margin-top: 20px;
   overflow-x: auto
 }
