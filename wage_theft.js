@@ -4,30 +4,6 @@ let uniqueCounties = [];
 let industryChartInstance = null;
 let countyChartInstance = null;
 
-const featuredCompanies = [
-  "Royal Care",
-  "American Business Institute",
-  "ABI/American Business Institute Corp",
-  'Cardworks Servicing',
-  'Ernst & Young US LLP',
-  'Du Pasquier & Co. Inc.',
-  'Bouchard Transportation Company',
-  'United States Postal Service',
-  'Feher Rubbish Removal',
-  'AGL Industries Inc',
-  'RK Seamless Gutters Inc.',
-  'Titan Development',
-  'Jerome Beverage Inc',
-  'SoFar Sounds',
-  'Jackies Kids',
-  'Streamline Group Inc.',
-  'Attis Ethanol Fulton',
-  'Climax Manufacturing',
-  'Fine Fare Supermarket',
-   'Brachs Supermarket',
-   'Eastern Fruit & Vegetables, Inc.'
-];
-
 Papa.parse("./data/processed_wage_theft_data.csv", {
   download: true,
   header: true,
@@ -36,33 +12,40 @@ Papa.parse("./data/processed_wage_theft_data.csv", {
   complete: function (results) {
     allRows = results.data
       .map(cleanRow)
-      .filter((row) => row.company && row.industry && row.county);
-
-    populateCompanyDropdown(allRows);
+      .filter((row) => row.companyId && row.company && row.industry && row.county);
 
     uniqueIndustries = extractUniqueIndustries(allRows);
     uniqueCounties = extractUniqueCounties(allRows);
 
     buildIndustryCheckboxes(uniqueIndustries);
+    buildIndustryChart(getCheckedIndustries());
     buildCountyChart(uniqueCounties);
 
-    const companySelect = document.getElementById("companySelect");
-    const initialCompany = companySelect.value;
+    const companyId = getCompanyIdFromUrl();
+    const selectedRow = allRows.find((row) => row.companyId === companyId);
 
-    updateFeaturedSections(initialCompany);
-    buildIndustryChart(getCheckedIndustries());
+    if (!companyId || !selectedRow) {
+      renderNotFound(companyId);
+      return;
+    }
 
-    companySelect.addEventListener("change", (e) => {
-      updateFeaturedSections(e.target.value);
-    });
+    renderCaseCard(selectedRow);
+    renderIndustryCard(selectedRow);
   },
   error: function (err) {
     console.error("CSV load error:", err);
+    renderLoadError();
   }
 });
 
+function getCompanyIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return (params.get("company") || "").trim().toLowerCase();
+}
+
 function cleanRow(row) {
   return {
+    companyId: String(row["company_id"] ?? "").trim().toLowerCase(),
     company: String(row["Company name"] ?? "").trim(),
     city: String(row["City"] ?? "").trim(),
     county: String(row["County"] ?? "").trim(),
@@ -83,38 +66,6 @@ function cleanRow(row) {
     countyTotalWages: Number(row["county_total_wages"] ?? 0),
     countyTotalCases: Number(row["county_total_cases"] ?? 0)
   };
-}
-
-function populateCompanyDropdown(rows) {
-  const select = document.getElementById("companySelect");
-  select.innerHTML = "";
-
-  const availableNames = new Set(rows.map((r) => r.company));
-
-  let optionsToUse = featuredCompanies.filter((name) => availableNames.has(name));
-
-  if (optionsToUse.length === 0) {
-    optionsToUse = rows
-      .slice()
-      .sort((a, b) => b.companyTotalWages - a.companyTotalWages)
-      .slice(0, 10)
-      .map((r) => r.company);
-  }
-
-  optionsToUse.forEach((name) => {
-    const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
-    select.appendChild(option);
-  });
-}
-
-function updateFeaturedSections(companyName) {
-  const row = allRows.find((r) => r.company === companyName);
-  if (!row) return;
-
-  renderCaseCard(row);
-  renderIndustryCard(row);
 }
 
 function renderCaseCard(row) {
@@ -146,8 +97,7 @@ function renderCaseCard(row) {
     </div>
 
     <p class="wt-narrative">
-      This featured case centers on a worker we label as
-      <strong>${escapeHtml(fakeWorkerName)}</strong>, associated with
+      This featured page is tied to a worker-specific barcode associated with
       <strong>${escapeHtml(row.company)}</strong>. In this company-level case,
       the dataset records <strong>${formatCurrency(row.companyTotalWages)}</strong>
       in stolen wages across <strong>${formatNumber(row.companyTotalClaimants)}</strong>
@@ -192,6 +142,44 @@ function renderIndustryCard(row) {
       <strong>${formatCurrency(row.industryAvgLossPerWorker)}</strong> per worker.
     </p>
   `;
+}
+
+function renderNotFound(companyId) {
+  const caseCard = document.getElementById("caseCard");
+  const industryCard = document.getElementById("industryCard");
+
+  caseCard.innerHTML = `
+    <div class="wt-error-box">
+      <strong>Company not found.</strong><br>
+      ${
+        companyId
+          ? `No record matched the company id <code>${escapeHtml(companyId)}</code>.`
+          : `No company id was provided in the page URL.`
+      }
+    </div>
+  `;
+
+  industryCard.innerHTML = `
+    <div class="wt-error-box">
+      This page expects a URL like:
+      <br><br>
+      <code>wage-theft.html?company=acme-construction</code>
+    </div>
+  `;
+}
+
+function renderLoadError() {
+  const caseCard = document.getElementById("caseCard");
+  const industryCard = document.getElementById("industryCard");
+
+  caseCard.innerHTML = `
+    <div class="wt-error-box">
+      <strong>Data failed to load.</strong><br>
+      Check that the CSV path is correct and that GitHub Pages is serving the file.
+    </div>
+  `;
+
+  industryCard.innerHTML = "";
 }
 
 function extractUniqueIndustries(rows) {
